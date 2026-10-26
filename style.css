@@ -1,6 +1,40 @@
+/* =========================================================
+   ANNA WATTMAN – style.css
+
+   Innehåll
+   1. Variabler & reset
+   2. Globala element (typografi, knappar, länkar)
+   3. Navbar
+   4. Startsida: hero, intro, tjänster, två spår, om mig
+   5. Tjänstesida: sidhero, samarbetsformer, tjänster, process
+   6. Om mig-sida: bild/text, sociala länkar
+   7. Kontakt (CTA) & footer
+   8. Responsivt
+========================================================= */
+
+
 /* =========================
-   RESET
+   1. VARIABLER & RESET
 ========================= */
+
+:root {
+    --bg: #f5f3ef;          /* sidbakgrund */
+    --bg-soft: #e8e4dd;     /* ljusbeige sektioner */
+    --bg-white: #fff;
+    --ink: #171717;         /* mörk text och mörka sektioner */
+    --text: #555;           /* brödtext */
+    --muted: #666;          /* dämpad text */
+    --faint: #888;          /* siffror och småtext */
+    --line: #ddd9d2;        /* sektionslinjer */
+    --line-strong: #d8d4cd; /* rutnät och listor */
+    --line-soft: #d1ccc4;   /* linjer på beige bakgrund */
+
+    --on-dark-text: #bcbcbc;
+    --on-dark-muted: #999;
+
+    --section-y: 110px;
+    --card-pad: 45px;
+}
 
 * {
     margin: 0;
@@ -14,9 +48,10 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f3ef;
-    color: #171717;
+    background: var(--bg);
+    color: var(--ink);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -29,9 +64,13 @@ img {
     display: block;
 }
 
+ul {
+    list-style: none;
+}
+
 
 /* =========================
-   GLOBAL
+   2. GLOBALA ELEMENT
 ========================= */
 
 .container {
@@ -40,16 +79,7 @@ img {
 }
 
 section {
-    padding: 110px 0;
-}
-
-.eyebrow {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    color: #666;
+    padding: var(--section-y) 0;
 }
 
 h1,
@@ -76,15 +106,35 @@ h3 {
 
 p {
     font-size: 17px;
-    color: #555;
+    color: var(--text);
 }
 
+/* Mellanrum mellan stycken i löpande textblock */
+p + p {
+    margin-top: 18px;
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+/* Etiketter i versaler */
+.eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: var(--muted);
+}
+
+/* Knappar */
 .button {
     display: inline-block;
     padding: 15px 25px;
-    background: #171717;
+    background: var(--ink);
     color: #fff;
-    border: 1px solid #171717;
+    border: 1px solid var(--ink);
     font-size: 14px;
     font-weight: 600;
     transition: 0.2s ease;
@@ -92,31 +142,54 @@ p {
 
 .button:hover {
     background: transparent;
-    color: #171717;
+    color: var(--ink);
 }
 
 .button-secondary {
     background: transparent;
-    color: #171717;
+    color: var(--ink);
 }
 
 .button-secondary:hover {
-    background: #171717;
+    background: var(--ink);
     color: #fff;
 }
 
+/* Textlänk med understreck */
 .text-link {
     display: inline-block;
     margin-top: 25px;
     font-size: 14px;
     font-weight: 700;
-    border-bottom: 1px solid #171717;
+    border-bottom: 1px solid var(--ink);
     padding-bottom: 4px;
+}
+
+/* Tvåspaltigt textblock (rubrik vänster, text höger) */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+}
+
+/* Lista med tankstreck och hängande indrag */
+.dash-list li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 15px;
+}
+
+.dash-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--faint);
 }
 
 
 /* =========================
-   NAVBAR
+   3. NAVBAR
 ========================= */
 
 .navbar {
@@ -125,14 +198,13 @@ p {
     z-index: 100;
     background: rgba(245, 243, 239, 0.94);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #ddd9d2;
+    border-bottom: 1px solid var(--line);
 }
 
 .nav-container {
     width: min(1200px, 92%);
     margin: 0 auto;
     height: 82px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -151,26 +223,26 @@ nav {
 
 nav a {
     font-size: 14px;
-    color: #666;
+    color: var(--muted);
     transition: 0.2s ease;
 }
 
 nav a:hover,
 nav a.active {
-    color: #171717;
+    color: var(--ink);
 }
 
 
 /* =========================
-   HERO
+   4. STARTSIDA
 ========================= */
 
+/* Hero */
 .hero {
     min-height: 760px;
     display: flex;
     align-items: center;
-
-    border-bottom: 1px solid #ddd9d2;
+    border-bottom: 1px solid var(--line);
 }
 
 .hero .container {
@@ -190,34 +262,24 @@ nav a.active {
 
 .hero-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     margin-top: 38px;
 }
 
-
-/* =========================
-   INTRO
-========================= */
-
+/* Intro (mörk sektion) */
 .intro-section {
-    background: #171717;
+    background: var(--ink);
     color: #fff;
 }
 
 .intro-section p,
 .intro-section .eyebrow {
-    color: #bcbcbc;
+    color: var(--on-dark-text);
 }
 
 .intro-section h2 {
     color: #fff;
-}
-
-.two-column {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
 }
 
 .intro-section .two-column > div:last-child {
@@ -229,16 +291,10 @@ nav a.active {
     border-color: #fff;
 }
 
-
-/* =========================
-   SECTION LABEL
-========================= */
-
 .section-label {
     display: flex;
     align-items: center;
     gap: 15px;
-
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -249,23 +305,16 @@ nav a.active {
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 34px;
     height: 34px;
-
     border: 1px solid currentColor;
     border-radius: 50%;
-
     font-size: 11px;
 }
 
-
-/* =========================
-   SERVICES PREVIEW
-========================= */
-
+/* Tjänsteöversikt */
 .services-preview {
-    border-bottom: 1px solid #ddd9d2;
+    border-bottom: 1px solid var(--line);
 }
 
 .services-preview h2 {
@@ -277,23 +326,22 @@ nav a.active {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1px;
-    background: #d8d4cd;
-    border: 1px solid #d8d4cd;
-    margin-bottom: 50px;
+    background: var(--line-strong);
+    border: 1px solid var(--line-strong);
 }
 
 .service-card {
-    background: #f5f3ef;
-    padding: 45px;
+    background: var(--bg);
+    padding: var(--card-pad);
     min-height: 280px;
 }
 
-.service-card span {
+.service-card > span {
     display: block;
     font-size: 12px;
     font-weight: 700;
     margin-bottom: 50px;
-    color: #888;
+    color: var(--faint);
 }
 
 .service-card h3 {
@@ -304,217 +352,14 @@ nav a.active {
     max-width: 450px;
 }
 
-
-/* =========================
-   WHY
-========================= */
-
-.why-section {
-    background: #e8e4dd;
-}
-
-.why-section h2 {
-    max-width: 600px;
-}
-
-.why-section .two-column > div:last-child {
-    max-width: 560px;
-}
-
-
-/* =========================
-   PROCESS
-========================= */
-
-.process-section {
-    border-bottom: 1px solid #ddd9d2;
-}
-
-.process-section > .container > h2 {
-    margin-bottom: 70px;
-}
-
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid #d8d4cd;
-}
-
-.process-step {
-    padding: 35px 25px 35px 0;
-    border-right: 1px solid #d8d4cd;
-    margin-right: 25px;
-}
-
-.process-step:last-child {
-    border-right: none;
-}
-
-.process-step span {
-    font-size: 12px;
-    font-weight: 700;
-    color: #888;
-}
-
-.process-step h3 {
-    margin: 35px 0 15px;
-    font-size: 21px;
-}
-
-.process-step p {
-    font-size: 15px;
-}
-
-
-/* =========================
-   ABOUT PREVIEW
-========================= */
-
-.about-preview {
-    background: #fff;
-}
-
-.about-preview h2 {
-    max-width: 650px;
-}
-
-.about-preview .two-column > div:last-child {
-    max-width: 550px;
-}
-
-
-/* =========================
-   CTA
-========================= */
-
-.cta-section {
-    background: #171717;
-    color: #fff;
-    text-align: center;
-}
-
-.cta-section .container {
-    max-width: 850px;
-}
-
-.cta-section .eyebrow {
-    color: #999;
-}
-
-.cta-section h2 {
-    color: #fff;
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-.cta-section p {
-    color: #aaa;
-    max-width: 600px;
-    margin: 30px auto 35px;
-}
-
-.cta-section .button {
-    background: #fff;
-    color: #171717;
-    border-color: #fff;
-}
-
-.cta-section .button:hover {
-    background: transparent;
-    color: #fff;
-}
-
-
-/* =========================
-   SERVICES PAGE
-========================= */
-
-.page-hero {
-    padding: 140px 0 100px;
-    border-bottom: 1px solid #ddd9d2;
-}
-
-.page-hero h1 {
-    max-width: 950px;
-}
-
-.page-hero .hero-text {
-    max-width: 650px;
-}
-
-.services-section {
-    padding-top: 0;
-}
-
-.service {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 70px;
-    padding: 100px 0;
-    border-bottom: 1px solid #d8d4cd;
-}
-
-.service-number {
-    font-size: 14px;
-    font-weight: 700;
-    color: #888;
-}
-
-.service-content {
-    max-width: 800px;
-}
-
-.service-content h2 {
-    margin-bottom: 30px;
-}
-
-.service-content p {
-    margin-bottom: 20px;
-}
-
-.service-intro {
-    font-size: 22px;
-    color: #171717 !important;
-    line-height: 1.4;
-    max-width: 700px;
-}
-
-.service-list {
-    list-style: none;
-    margin: 35px 0;
-    border-top: 1px solid #d8d4cd;
-}
-
-.service-list li {
-    padding: 14px 0;
-    border-bottom: 1px solid #d8d4cd;
-    font-size: 15px;
-}
-
-.service-list li::before {
-    content: "—";
-    margin-right: 12px;
-    color: #888;
-}
-
-.service-example,
-.service-note {
-    font-size: 15px !important;
-    color: #666 !important;
-}
-
-
-/* =========================
-   SERVICE CARD NOTE
-========================= */
-
+/* Mörkt kort i tjänsteöversikten */
 .service-card-note {
-    background: #171717;
+    background: var(--ink);
     color: #fff;
 }
 
-.service-card-note span {
-    color: #999;
+.service-card-note > span {
+    color: var(--on-dark-muted);
     letter-spacing: 0.12em;
 }
 
@@ -523,7 +368,7 @@ nav a.active {
 }
 
 .service-card-note p {
-    color: #bcbcbc;
+    color: var(--on-dark-text);
 }
 
 .service-card-note .text-link {
@@ -532,27 +377,35 @@ nav a.active {
     margin-top: 20px;
 }
 
+/* Två spår: befintligt material / nytt innehåll */
+.why-section {
+    background: var(--bg-soft);
+}
 
-/* =========================
-   TWO PATHS
-========================= */
+.why-section h2 {
+    max-width: 600px;
+}
 
 .why-section > .container > h2 {
     max-width: 700px;
     margin-bottom: 70px;
 }
 
+.why-section .two-column > div:last-child {
+    max-width: 560px;
+}
+
 .paths-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: #d1ccc4;
-    border: 1px solid #d1ccc4;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
 }
 
 .path {
-    background: #e8e4dd;
-    padding: 45px;
+    background: var(--bg-soft);
+    padding: var(--card-pad);
 }
 
 .path-label {
@@ -573,29 +426,48 @@ nav a.active {
 }
 
 .path ul {
-    list-style: none;
     margin-top: 28px;
-    border-top: 1px solid #d1ccc4;
+    border-top: 1px solid var(--line-soft);
 }
 
 .path li {
     padding: 12px 0;
-    border-bottom: 1px solid #d1ccc4;
-    font-size: 15px;
+    border-bottom: 1px solid var(--line-soft);
     color: #444;
 }
 
-.path li::before {
-    content: "—";
-    margin-right: 12px;
-    color: #888;
+/* Om mig-utdrag */
+.about-preview {
+    background: var(--bg-white);
+}
+
+.about-preview h2 {
+    max-width: 650px;
+}
+
+.about-preview .two-column > div:last-child {
+    max-width: 550px;
 }
 
 
 /* =========================
-   COLLAB (SERVICES PAGE)
+   5. TJÄNSTESIDA
 ========================= */
 
+.page-hero {
+    padding: 140px 0 100px;
+    border-bottom: 1px solid var(--line);
+}
+
+.page-hero h1 {
+    max-width: 950px;
+}
+
+.page-hero .hero-text {
+    max-width: 650px;
+}
+
+/* Samarbetsformer under sidheron */
 .collab-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -603,7 +475,7 @@ nav a.active {
     max-width: 900px;
     margin-top: 70px;
     padding-top: 40px;
-    border-top: 1px solid #d8d4cd;
+    border-top: 1px solid var(--line-strong);
 }
 
 .collab h3 {
@@ -615,11 +487,60 @@ nav a.active {
     font-size: 15px;
 }
 
+/* Tjänsteblock */
+.services-section {
+    padding-top: 0;
+}
 
-/* =========================
-   SERVICE META (SERVICES PAGE)
-========================= */
+.service {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 70px;
+    padding: 100px 0;
+    border-bottom: 1px solid var(--line-strong);
+}
 
+.service-number {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--faint);
+}
+
+.service-content {
+    max-width: 800px;
+}
+
+.service-content h2 {
+    margin-bottom: 30px;
+}
+
+.service-intro {
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.4;
+    max-width: 700px;
+    margin-bottom: 20px;
+}
+
+.service-content p + p {
+    margin-top: 20px;
+}
+
+.service-list {
+    margin: 35px 0;
+    border-top: 1px solid var(--line-strong);
+}
+
+.service-list li {
+    padding: 14px 0 14px 28px;
+    border-bottom: 1px solid var(--line-strong);
+}
+
+.service-list li::before {
+    top: 14px;
+}
+
+/* Passar för / typiska uppdrag */
 .service-meta {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -632,37 +553,185 @@ nav a.active {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #666;
+    color: var(--muted);
     margin-bottom: 14px;
 }
 
-.service-meta p {
+.service-meta p,
+.service-meta li {
     font-size: 15px;
-    color: #666;
-    margin-bottom: 0;
-}
-
-.service-meta ul {
-    list-style: none;
+    color: var(--muted);
 }
 
 .service-meta li {
-    font-size: 15px;
-    color: #666;
-    padding: 6px 0;
+    padding: 6px 0 6px 28px;
 }
 
 .service-meta li::before {
-    content: "—";
-    margin-right: 10px;
+    top: 6px;
     color: #999;
+}
+
+/* Process */
+.process-section {
+    border-bottom: 1px solid var(--line);
+}
+
+.process-section > .container > h2 {
+    margin-bottom: 70px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line-strong);
+}
+
+.process-step {
+    padding: 35px 25px 35px 0;
+    border-right: 1px solid var(--line-strong);
+    margin-right: 25px;
+}
+
+.process-step:last-child {
+    border-right: none;
+    margin-right: 0;
+}
+
+.process-step span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--faint);
+}
+
+.process-step h3 {
+    margin: 35px 0 15px;
+    font-size: 21px;
+}
+
+.process-step p {
+    font-size: 15px;
 }
 
 
 /* =========================
-   CTA BUTTONS
+   6. OM MIG-SIDA
 ========================= */
 
+.about-main {
+    border-bottom: 1px solid var(--line);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.about-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--bg-soft);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-text {
+    max-width: 600px;
+}
+
+.about-text h2 {
+    margin-bottom: 35px;
+}
+
+/* Sociala länkar */
+.social-section {
+    background: var(--bg-white);
+}
+
+.social-section h2 {
+    max-width: 700px;
+    margin-bottom: 25px;
+}
+
+.social-intro {
+    max-width: 600px;
+    margin-bottom: 55px;
+}
+
+.social-links {
+    border-top: 1px solid var(--line-strong);
+}
+
+.social-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line-strong);
+    font-size: 20px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.social-link:hover {
+    padding-left: 10px;
+}
+
+.social-link span:last-child {
+    font-size: 18px;
+    color: #777;
+}
+
+
+/* =========================
+   7. KONTAKT & FOOTER
+========================= */
+
+.cta-section {
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+}
+
+.cta-section .container {
+    max-width: 850px;
+}
+
+.cta-section .eyebrow {
+    color: var(--on-dark-muted);
+}
+
+.cta-section h2 {
+    color: #fff;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.cta-section p {
+    color: #aaa;
+    max-width: 600px;
+    margin: 30px auto 40px;
+}
+
+.cta-section .button {
+    background: #fff;
+    color: var(--ink);
+    border-color: #fff;
+}
+
+.cta-section .button:hover {
+    background: transparent;
+    color: #fff;
+}
+
+/* Knapp med e-postadress under */
 .cta-buttons {
     display: flex;
     flex-direction: column;
@@ -683,14 +752,9 @@ nav a.active {
     border-color: #fff;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     padding: 30px 0;
-    background: #171717;
+    background: var(--ink);
     border-top: 1px solid #333;
 }
 
@@ -701,13 +765,14 @@ footer p {
 
 
 /* =========================
-   MOBILE
+   8. RESPONSIVT
 ========================= */
 
 @media (max-width: 800px) {
 
-    section {
-        padding: 75px 0;
+    :root {
+        --section-y: 75px;
+        --card-pad: 35px;
     }
 
     .nav-container {
@@ -722,6 +787,7 @@ footer p {
         font-size: 12px;
     }
 
+    /* Startsida */
     .hero {
         min-height: 650px;
     }
@@ -740,54 +806,32 @@ footer p {
         gap: 45px;
     }
 
-    .service-preview-grid {
+    .section-label {
+        margin-bottom: 50px;
+    }
+
+    .services-preview h2,
+    .why-section > .container > h2,
+    .process-section > .container > h2 {
+        margin-bottom: 45px;
+    }
+
+    .service-preview-grid,
+    .paths-grid {
         grid-template-columns: 1fr;
     }
 
     .service-card {
         min-height: auto;
-        padding: 35px;
     }
 
-    .process-grid {
-        grid-template-columns: 1fr;
+    .service-card > span {
+        margin-bottom: 35px;
     }
 
-    .process-step {
-        border-right: none;
-        border-bottom: 1px solid #d8d4cd;
-        margin-right: 0;
-        padding: 30px 0;
-    }
-
-    .process-step:last-child {
-        border-bottom: none;
-    }
-
-    .service {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 70px 0;
-    }
-
+    /* Tjänstesida */
     .page-hero {
         padding: 90px 0 70px;
-    }
-
-    .service-content h2 {
-        font-size: 42px;
-    }
-
-    .why-section > .container > h2 {
-        margin-bottom: 45px;
-    }
-
-    .paths-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .path {
-        padding: 35px;
     }
 
     .collab-grid {
@@ -796,13 +840,60 @@ footer p {
         margin-top: 50px;
     }
 
+    .service {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 70px 0;
+    }
+
+    .service-content h2 {
+        font-size: 42px;
+    }
+
     .service-meta {
         grid-template-columns: 1fr;
         gap: 30px;
     }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-step {
+        border-right: none;
+        border-bottom: 1px solid var(--line-strong);
+        margin-right: 0;
+        padding: 30px 0;
+    }
+
+    .process-step:last-child {
+        border-bottom: none;
+    }
+
+    /* Om mig-sida */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .about-image {
+        max-width: 500px;
+    }
+
+    .social-link {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 550px) {
+
+    :root {
+        --card-pad: 28px 22px;
+    }
+
+    .container {
+        width: 88%;
+    }
 
     nav {
         gap: 10px;
@@ -824,120 +915,12 @@ footer p {
         font-size: 40px;
     }
 
-    .container {
-        width: 88%;
+    .hero {
+        min-height: auto;
+        padding: 90px 0;
     }
 
-    .service-card,
-    .path {
-        padding: 28px 22px;
-    }
-}
-
-/* =========================
-   ABOUT PAGE
-========================= */
-
-.about-main {
-    border-bottom: 1px solid #ddd9d2;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 100px;
-    align-items: center;
-}
-
-.about-image {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: #e8e4dd;
-}
-
-.about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.about-text {
-    max-width: 600px;
-}
-
-.about-text h2 {
-    margin-bottom: 35px;
-}
-
-.about-text p {
-    margin-bottom: 20px;
-}
-
-
-/* =========================
-   SOCIAL MEDIA
-========================= */
-
-.social-section {
-    background: #fff;
-}
-
-.social-section h2 {
-    max-width: 700px;
-    margin-bottom: 25px;
-}
-
-.social-intro {
-    max-width: 600px;
-    margin-bottom: 55px;
-}
-
-.social-links {
-    border-top: 1px solid #d8d4cd;
-}
-
-.social-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 24px 0;
-
-    border-bottom: 1px solid #d8d4cd;
-
-    font-size: 20px;
-    font-weight: 500;
-
-    transition: 0.2s ease;
-}
-
-.social-link:hover {
-    padding-left: 10px;
-}
-
-.social-link span:last-child {
-    font-size: 18px;
-    color: #777;
-}
-
-
-/* =========================
-   ABOUT MOBILE
-========================= */
-
-@media (max-width: 800px) {
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-
-    .about-image {
-        max-width: 500px;
-    }
-
-    .social-link {
-        font-size: 18px;
+    .service-content h2 {
+        font-size: 38px;
     }
 }
