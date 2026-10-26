@@ -505,6 +505,186 @@ nav a.active {
 
 
 /* =========================
+   SERVICE CARD NOTE
+========================= */
+
+.service-card-note {
+    background: #171717;
+    color: #fff;
+}
+
+.service-card-note span {
+    color: #999;
+    letter-spacing: 0.12em;
+}
+
+.service-card-note h3 {
+    color: #fff;
+}
+
+.service-card-note p {
+    color: #bcbcbc;
+}
+
+.service-card-note .text-link {
+    color: #fff;
+    border-color: #fff;
+    margin-top: 20px;
+}
+
+
+/* =========================
+   TWO PATHS
+========================= */
+
+.why-section > .container > h2 {
+    max-width: 700px;
+    margin-bottom: 70px;
+}
+
+.paths-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #d1ccc4;
+    border: 1px solid #d1ccc4;
+}
+
+.path {
+    background: #e8e4dd;
+    padding: 45px;
+}
+
+.path-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 35px;
+}
+
+.path h3 {
+    margin-bottom: 18px;
+}
+
+.path p {
+    max-width: 500px;
+}
+
+.path ul {
+    list-style: none;
+    margin-top: 28px;
+    border-top: 1px solid #d1ccc4;
+}
+
+.path li {
+    padding: 12px 0;
+    border-bottom: 1px solid #d1ccc4;
+    font-size: 15px;
+    color: #444;
+}
+
+.path li::before {
+    content: "—";
+    margin-right: 12px;
+    color: #888;
+}
+
+
+/* =========================
+   COLLAB (SERVICES PAGE)
+========================= */
+
+.collab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 900px;
+    margin-top: 70px;
+    padding-top: 40px;
+    border-top: 1px solid #d8d4cd;
+}
+
+.collab h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.collab p {
+    font-size: 15px;
+}
+
+
+/* =========================
+   SERVICE META (SERVICES PAGE)
+========================= */
+
+.service-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 10px;
+}
+
+.service-meta h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 14px;
+}
+
+.service-meta p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.service-meta ul {
+    list-style: none;
+}
+
+.service-meta li {
+    font-size: 15px;
+    color: #666;
+    padding: 6px 0;
+}
+
+.service-meta li::before {
+    content: "—";
+    margin-right: 10px;
+    color: #999;
+}
+
+
+/* =========================
+   CTA BUTTONS
+========================= */
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.cta-email {
+    font-size: 14px;
+    color: #aaa;
+    border-bottom: 1px solid #555;
+    padding-bottom: 3px;
+    transition: 0.2s ease;
+}
+
+.cta-email:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -597,6 +777,29 @@ footer p {
     .service-content h2 {
         font-size: 42px;
     }
+
+    .why-section > .container > h2 {
+        margin-bottom: 45px;
+    }
+
+    .paths-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .path {
+        padding: 35px;
+    }
+
+    .collab-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin-top: 50px;
+    }
+
+    .service-meta {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 }
 
 @media (max-width: 550px) {
@@ -623,6 +826,11 @@ footer p {
 
     .container {
         width: 88%;
+    }
+
+    .service-card,
+    .path {
+        padding: 28px 22px;
     }
 }
 
